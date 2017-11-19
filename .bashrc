@@ -43,6 +43,9 @@ fi
 # old unix terminal style line prompt without folder and user name
 export PS1="\$ "
 
+# set vim as standard system editor
+export EDITOR='vim'
+
 # add uncrustify config
 export PATH=$PATH:/home/tuunit/.uncrustify.cfg
 
