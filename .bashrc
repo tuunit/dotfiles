@@ -52,7 +52,13 @@ export PATH=$PATH:/home/tuunit/.uncrustify.cfg
 # always us vim with open tabs parameter
 alias vim='vim -p'
 
+# use vim for text editing with Goyo
+alias vimtex='vim -c Goyo'
+
 # load additional aliases and exports
 if [ -f ~/.bash_extras ]; then
     source ~/.bash_extras
 fi
+
+# start up screen
+screenfetch
