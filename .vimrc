@@ -96,7 +96,7 @@ set background=dark
 colorscheme solarized
 let g:solarized_termcolors=16
 
-" Airline - Powerline with Source Coe Pro Font and FontAwesome Glyphicons
+" Airline - Powerline with Source Code Pro Font and FontAwesome Glyphicons
 let g:airline_powerline_fonts=1
 set guifont=Source\ Code\ Pro\ for\ Powerline:h12
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
@@ -315,7 +315,6 @@ autocmd FileType python NeoComplCacheLock
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
@@ -331,3 +330,13 @@ autocmd FileType c noremap <buffer> <c-f> :call Uncrustify('c')<CR>
 autocmd FileType c vnoremap <buffer> <c-f> :call RangeUncrustify('c')<CR>
 autocmd FileType cpp noremap <buffer> <c-f> :call Uncrustify('cpp')<CR>
 autocmd FileType cpp vnoremap <buffer> <c-f> :call RangeUncrustify('cpp')<CR>
+
+" Spellchecking
+au BufNewFile,BufRead,BufEnter   *.tex     setlocal spell    spelllang=en_gb,de_de
+au BufNewFile,BufRead,BufEnter   *.wiki    setlocal spell    spelllang=en_gb
+au BufNewFile,BufRead,BufEnter   *.md      setlocal spell    spelllang=en_gb
+au BufNewFile,BufRead,BufEnter   *.txt     setlocal spell    spelllang=en_gb
+au BufNewFile,BufRead,BufEnter   README    setlocal spell    spelllang=en_gb
+
+au BufReadPost,BufNewFile *.md,*.txt,*.tex,README,*.wiki nnoremap <Tab> :bnext<CR>
+au BufReadPost,BufNewFile *.md,*.txt,*.tex,README,*.wiki nnoremap <S-Tab> :bprevious<CR>
