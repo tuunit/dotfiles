@@ -5,10 +5,6 @@
 " Use Vim settings, rather than Vi settings
 set nocompatible
 
-" Load plugins with Pathogen
-runtime autoload/pathogen.vim
-execute pathogen#infect()
-
 " Enable file type detection and load plugin indent files
 filetype plugin indent on
 
@@ -63,9 +59,6 @@ endif
 " Use only 1 space after "." when joining lines instead of 4
 set nojoinspaces
 
-" Enable mouse for scrolling
-set mouse=a
-
 ""
 "" Other
 ""
@@ -88,29 +81,18 @@ inoremap <c-j> _
 " ============================================================================ "
 " Appearance                                                                   "
 " ============================================================================ "
-
-syntax on                           " Enable syntax highlighting
-set t_Co=16                         " 16 Colors
-" Solarized dark
-set background=dark
-colorscheme solarized
-let g:solarized_termcolors=16
-
-" Airline - Powerline with Source Code Pro Font and FontAwesome Glyphicons
-let g:airline_powerline_fonts=1
-set guifont=Source\ Code\ Pro\ for\ Powerline:h12
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+" Enable syntax highlighting
+syntax on
 
 " Make it obvious where 80 characters is
 set textwidth=80
 " set formatoptions=cq
 set formatoptions=qrn1
 set wrapmargin=0
-set colorcolumn=+1
+"set colorcolumn=+1
 
 " Line numbers
 set number
-set relativenumber
 
 " Scrolling
 set scrolloff=8         "Start scrolling when we're 8 lines away from margins
@@ -135,35 +117,6 @@ set ruler           " show the cursor position all the time
 set shortmess=atI   " Don't show the Vim intro message
 set showmatch       " Show matching brackets
 set laststatus=2    " Always display the status line
-
-" ============================================================================ "
-" Windows                                                                      "
-" ============================================================================ "
-
-" Quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
-
-" Quicker window movement
-nnoremap <S-h> gT
-nnoremap <S-l> gt
-
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
-
-" resize panes
-nnoremap <silent> <Right> :vertical resize +5<cr>
-nnoremap <silent> <Left> :vertical resize -5<cr>
-nnoremap <silent> <Up> :resize +5<cr>
-nnoremap <silent> <Down> :resize -5<cr>
 
 " ============================================================================ "
 " Command Line                                                                 "
@@ -213,25 +166,13 @@ set autoread
 " Automatically :write before running commands
 set autowrite
 
+
 " Trigger autoread when changing buffers or coming back to vim in terminal.
 au FocusGained,BufEnter * :silent! !
 
 " Save whenever switching windows or leaving vim. This is useful when running
 " the tests inside vim without having to save all files first.
 au FocusLost,WinLeave * :silent! wa
-
-" ============================================================================ "
-" Registers                                                                    "
-" ============================================================================ "
-
-" Use the OS clipboard by default
-set clipboard=unnamed
-
-" Copy to X11 primary clipboard
-map <leader>y "*y
-
-" Repeat the last macro in the q register
-nmap <leader>2 @q
 
 " ============================================================================ "
 " Backup                                                                       "
@@ -246,11 +187,11 @@ set noswapfile
 set updatecount=0
 
 " ============================================================================ "
-" Plugin Settings and Mappings
+" Mappings
 " ============================================================================ "
 
 " Auto format
-map <F7> mzgg=G`z 
+map <F7> mzgg=G`z
 
 " Smoother terminal transition
 nnoremap <C-d> :sh<cr>
@@ -269,74 +210,3 @@ let g:html_indent_tags = 'li\|p'
 nmap <leader>` ysiw`
 nmap <leader>" ysiw"
 nmap <leader>' ysiw'
-
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
-map <C-n> :NERDTreeToggle<CR>
-
-" Show hidden files in NERDTree
-let NERDTreeShowHidden=1
-let NERDTreeShowLineNumbers=1
-
-
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-" inoremap <expr><C-g>     neocomplcache#undo_completion()
-" inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" Enable omni completion.
-autocmd FileType python NeoComplCacheLock
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplcache_force_omni_patterns')
-  let g:neocomplcache_force_omni_patterns = {}
-endif
-let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" Uncrustify
-autocmd FileType c noremap <buffer> <c-f> :call Uncrustify('c')<CR>
-autocmd FileType c vnoremap <buffer> <c-f> :call RangeUncrustify('c')<CR>
-autocmd FileType cpp noremap <buffer> <c-f> :call Uncrustify('cpp')<CR>
-autocmd FileType cpp vnoremap <buffer> <c-f> :call RangeUncrustify('cpp')<CR>
-
-" Spellchecking
-au BufNewFile,BufRead,BufEnter   *.tex     setlocal spell    spelllang=en_gb,de_de
-au BufNewFile,BufRead,BufEnter   *.wiki    setlocal spell    spelllang=en_gb
-au BufNewFile,BufRead,BufEnter   *.md      setlocal spell    spelllang=en_gb
-au BufNewFile,BufRead,BufEnter   *.txt     setlocal spell    spelllang=en_gb
-au BufNewFile,BufRead,BufEnter   README    setlocal spell    spelllang=en_gb
-
-au BufReadPost,BufNewFile *.md,*.txt,*.tex,README,*.wiki nnoremap <Tab> :bnext<CR>
-au BufReadPost,BufNewFile *.md,*.txt,*.tex,README,*.wiki nnoremap <S-Tab> :bprevious<CR>
