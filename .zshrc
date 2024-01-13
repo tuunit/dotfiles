@@ -75,34 +75,13 @@ HIST_STAMPS="yyyy-mm-dd"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
-
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
+# hgit as a git alias for the home directory
+alias hgit='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Neovim as default editor
+export EDITOR='nvim'
 
 ssh-add -l &>/dev/null
 if [ "$?" != 0 ]; then
@@ -118,7 +97,6 @@ export NVM_DIR="$HOME/.nvm"
 
 export WORKSPACE_DIRECTORY=/workspace
 
-alias vim="nvim -p"
 alias code="code ."
 alias upgrade="sudo apt update && sudo apt upgrade -yq && flatpak update -y"
 
