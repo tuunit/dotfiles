@@ -69,14 +69,8 @@ set nostartofline
 " Don't jump to the matching bracket upon bracket insert (default)
 set noshowmatch
 
-" Insert a hash rocket with <c-l>
-imap <c-l> <space>=><space>
-
 " Set <c-c> to escape in insert mode
 inoremap <c-c> <esc>
-
-" Set <c-j> to underscore in insert mode
-inoremap <c-j> _
 
 " ============================================================================ "
 " Appearance                                                                   "
@@ -85,7 +79,7 @@ inoremap <c-j> _
 syntax on
 
 " Make it obvious where 80 characters is
-set textwidth=80
+" set textwidth=80
 " set formatoptions=cq
 set formatoptions=qrn1
 set wrapmargin=0

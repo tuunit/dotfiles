@@ -60,10 +60,10 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-HISTSIZE=-1
-HISTFILESIZE=-1
+HISTSIZE=1000000000
+SAVEHIST=1000000000
 HIST_STAMPS="yyyy-mm-dd"
+
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -73,12 +73,77 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git virtualenv)
+plugins=(git)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 
 source $ZSH/oh-my-zsh.sh
 
-eval $(keychain --eval id_rsa)
+# User configuration
 
-export GOPATH=$HOME/go
-export PATH=$PATH:$HOME/go/bin:/usr/local/go/bin:$GOPATH
-alias vim="vim -p"
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+ssh-add -l &>/dev/null
+if [ "$?" != 0 ]; then
+     echo Adding keys...
+     ssh-add -t 1d
+fi
+
+export GPG_TTY=$(tty)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export WORKSPACE_DIRECTORY=/workspace
+
+alias vim="nvim -p"
+alias code="code ."
+alias upgrade="sudo apt update && sudo apt upgrade -yq && flatpak update -y"
+
+devcontainer() {
+    cd /workspace/dev-setup/devcontainers/$1
+    /usr/bin/code --folder-uri "$(python3 /workspace/dev-setup/make_devcontainer_folder_uri.py)"
+}
+
+_devcontainer() {
+    local -a container
+
+    container=($(ls /workspace/dev-setup/devcontainers))
+    _describe 'command' container
+}
+
+compdef _devcontainer devcontainer
+
+
+# bun completions
+[ -s "/home/tuunit/.bun/_bun" ] && source "/home/tuunit/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# go
+export PATH=$PATH:/usr/local/go/bin:/home/tuunit/go/bin
+
