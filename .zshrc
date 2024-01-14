@@ -116,12 +116,15 @@ compdef _devcontainer devcontainer
 
 
 # bun completions
-[ -s "/home/tuunit/.bun/_bun" ] && source "/home/tuunit/.bun/_bun"
+[ -s "/home/tuunit/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # go
-export PATH=$PATH:/usr/local/go/bin:/home/tuunit/go/bin
-
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$PATH"
+export PATH="$PATH:$GOPATH/bin"
