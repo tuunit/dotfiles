@@ -4,7 +4,7 @@ lsp_zero.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr, remap = false}
 
   --Go to definition
-  vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+  vim.keymap.set("n", "gd", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", opts)
 
   --Show description of symbol
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
