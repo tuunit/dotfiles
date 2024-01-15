@@ -43,6 +43,7 @@ require('mason').setup()
 local servers = {
 	'golangci_lint_ls',
 	'gopls',
+	'pyright',
 	'jsonls',
 	'helm_ls',
 	'marksman',
