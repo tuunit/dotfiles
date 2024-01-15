@@ -41,13 +41,13 @@ end)
 require('mason').setup()
 
 local servers = {
-	'golangci_lint_ls',
+	'lua_ls',
 	'gopls',
 	'pyright',
 	'jsonls',
-	'helm_ls',
 	'marksman',
-	'lua_ls',
+	'helm_ls',
+	'ansiblels',
 }
 
 require('mason-lspconfig').setup({
