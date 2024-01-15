@@ -83,11 +83,7 @@ alias hgit='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # Neovim as default editor
 export EDITOR='nvim'
 
-ssh-add -l &>/dev/null
-if [ "$?" != 0 ]; then
-     echo Adding keys...
-     ssh-add -t 1d
-fi
+eval `keychain --eval id_rsa`
 
 export GPG_TTY=$(tty)
 
