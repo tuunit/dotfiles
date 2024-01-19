@@ -1,8 +1,7 @@
 ----------------------------
 -- Editing
 ----------------------------
-
-vim.opt.guicursor = ""    -- Fat cursor
+vim.opt.guicursor = "" -- Fat cursor
 
 -- Whitespace
 vim.opt.expandtab = true  -- Tab in insert mode will produce spaces
@@ -17,18 +16,20 @@ vim.opt.autoindent = true -- Enable auto indentation
 vim.opt.listchars = 'tab:▸ ,trail:·,eol:¬,nbsp:_,extends:❯,precedes:❮'
 
 -- Wrapping
-vim.opt.wrap = true       -- Enable wrapping
-vim.opt.showbreak = "↪"  -- Character to precede line wraps
+vim.opt.wrap = true -- Enable wrapping
+vim.opt.showbreak = "↪" -- Character to precede line wraps
+
+-- Backspace
+vim.opt.backspace = "indent,eol,start"
 
 ----------------------------
 -- Search
 ----------------------------
-
-vim.opt.gdefault = true       -- Never have to type /g at the end of search
-vim.opt.ignorecase = true     -- Case insensitive searching (unless specified)
-vim.opt.smartcase = true      -- ...unless they contain at least one uppercase
-vim.opt.hlsearch = true       -- Highlight searches
-vim.opt.incsearch = true      -- Start searching as you type
+vim.opt.gdefault = true   -- Never have to type /g at the end of search
+vim.opt.ignorecase = true -- Case insensitive searching (unless specified)
+vim.opt.smartcase = true  -- ...unless they contain at least one uppercase
+vim.opt.hlsearch = true   -- Highlight searches
+vim.opt.incsearch = true  -- Start searching as you type
 
 ----------------------------
 -- Appearance
@@ -39,9 +40,9 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Scrolling
-vim.opt.scrolloff=8         -- Start scrolling when we're 8 lines away from margins
-vim.opt.sidescrolloff=15
-vim.opt.sidescroll=1
+vim.opt.scrolloff = 8 -- Start scrolling when we're 8 lines away from margins
+vim.opt.sidescrolloff = 15
+vim.opt.sidescroll = 1
 
 -- Open new split panes to right and bottom, which feels more natural
 vim.opt.splitbelow = true
@@ -58,11 +59,11 @@ vim.opt.winheight = 999
 vim.opt.wrapmargin = 0
 vim.opt.formatoptions = 'qrn1'
 vim.opt.colorcolumn = "80"
-vim.opt.title = true       -- Show the filename in the window titlebar
-vim.opt.ruler = true       -- show the cursor position all the time
-vim.opt.shortmess = "atI"  -- Don't show the Vim intro message
-vim.opt.showmatch = true   -- Show matching brackets
-vim.opt.laststatus = 2     -- Always display the status line
+vim.opt.title = true      -- Show the filename in the window titlebar
+vim.opt.ruler = true      -- show the cursor position all the time
+vim.opt.shortmess = "atI" -- Don't show the Vim intro message
+vim.opt.showmatch = true  -- Show matching brackets
+vim.opt.laststatus = 2    -- Always display the status line
 
 ----------------------------
 -- Backup
