@@ -45,6 +45,14 @@ alias code="code ."
 # Quick and dirty upgrade
 alias upgrade="sudo apt update && sudo apt upgrade -yq && flatpak update -y"
 
+# Replace ls with exa
+alias ls="exa"
+alias ll="exa -alh"
+alias tree="exa --tree"
+
+# Replace cat with bat
+alias cat="batcat"
+
 # Custom devcontainer method for starting devcontainers from the cli
 devcontainer() {
     cd /workspace/dev-setup/devcontainers/$1
