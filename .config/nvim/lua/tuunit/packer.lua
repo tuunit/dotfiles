@@ -6,9 +6,10 @@ return require('packer').startup(function(use)
 
 	-- theme
 	use({
+		--'folke/tokyonight.nvim',
 		'rebelot/kanagawa.nvim',
 		config = function()
-			vim.cmd('colorscheme kanagawa')
+			vim.cmd('colorscheme kanagawa-wave')
 		end
 	})
 
@@ -31,13 +32,14 @@ return require('packer').startup(function(use)
 
 	-- fuzzy finder
 	use({
-		'nvim-telescope/telescope.nvim', tag = '0.1.5',
+		'nvim-telescope/telescope.nvim',
+		tag = '0.1.5',
 		-- or                            , branch = '0.1.x',
-		requires = { {'nvim-lua/plenary.nvim'} }
+		requires = { { 'nvim-lua/plenary.nvim' } }
 	})
 
 	-- better language support
-	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+	use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 
 	-- git support
 	use('tpope/vim-fugitive')
@@ -46,32 +48,57 @@ return require('packer').startup(function(use)
 	-- detect tabstop and shiftwidth automatically
 	use('tpope/vim-sleuth')
 
-	-- lsp 
-	use {
+	-- lsp
+	use({
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v3.x',
 		requires = {
 			-- lsp / mason
-			{'neovim/nvim-lspconfig'},
-			{'williamboman/mason.nvim'},
-			{'williamboman/mason-lspconfig.nvim'},
+			{ 'neovim/nvim-lspconfig' },
+			{ 'williamboman/mason.nvim' },
+			{ 'williamboman/mason-lspconfig.nvim' },
 
 			-- autocompletion
-			{'hrsh7th/nvim-cmp'},
-			{'hrsh7th/cmp-nvim-lsp'},
-			{'hrsh7th/cmp-buffer'},
-			{'hrsh7th/cmp-path'},
-			{'hrsh7th/cmp-nvim-lua'},
+			{ 'hrsh7th/nvim-cmp' },
+			{ 'hrsh7th/cmp-nvim-lsp' },
+			{ 'hrsh7th/cmp-buffer' },
+			{ 'hrsh7th/cmp-path' },
+			{ 'hrsh7th/cmp-nvim-lua' },
 
 			-- snippet engine
-			{'L3MON4D3/LuaSnip'},
-			{'saadparwaiz1/cmp_luasnip'},
+			{ 'L3MON4D3/LuaSnip' },
+			{ 'saadparwaiz1/cmp_luasnip' },
 
 			-- adds a number of snippets
-			{'rafamadriz/friendly-snippets'},
+			{ 'rafamadriz/friendly-snippets' },
 
 			-- lua configuration for nvim
-			{'folke/neodev.nvim'},
+			{ 'folke/neodev.nvim' },
 		}
-	}
+	})
+
+	-- carbon code screenshots
+	use({
+		'ellisonleao/carbon-now.nvim',
+		config = function()
+			require('carbon-now').setup({
+				options = {
+					bg = 'rgba(0,0,0,0)',
+					theme = 'material',
+					drop_shadow = true,
+					drop_shadow_blur = '68px',
+					drop_shadow_offset_y = '20px',
+					font_family = 'Source Code Pro',
+					window_theme = 'none',
+					line_numbers = true
+				}
+			})
+		end
+	})
+
+	-- devcontainer
+	use({
+		'esensar/nvim-dev-container',
+		config = function() require('devcontainer').setup {} end
+	})
 end)

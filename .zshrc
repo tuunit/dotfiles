@@ -21,6 +21,7 @@ alias hgit='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 eval `keychain --eval id_rsa`
 
 # Always start a tmux session
+export TERM="screen-256color"
 if [ "$TMUX" = "" ]; then tmux; fi
 
 export GPG_TTY=$(tty)
@@ -75,3 +76,9 @@ export PATH="$GOENV_ROOT/bin:$PATH"
 eval "$(goenv init -)"
 export PATH="$GOROOT/bin:$PATH"
 export PATH="$PATH:$GOPATH/bin"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
