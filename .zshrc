@@ -1,3 +1,13 @@
+if [ "$TERM_PROGRAM" = "vscode" ]; then
+  export TERM="xterm-256color"
+else
+  export TERM="screen-256color"
+fi
+# Always start a tmux session
+if [ -z "$TMUX" ]; then
+  exec tmux new-session -A -s workspace
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -29,11 +39,6 @@ alias hgit='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Auto load ssh session using keychain
 eval `keychain --eval id_rsa`
-
-# Always start a tmux session
-export TERM="screen-256color"
-if [ "$TMUX" = "" ]; then tmux; fi
-
 export GPG_TTY=$(tty)
 
 # Initialize nvm
