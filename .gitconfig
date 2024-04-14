@@ -1,0 +1,12 @@
+[user]
+	name = tuunit
+	email = jan@larwig.com
+	signingkey = C2172BFA220A037A
+[pull]
+	rebase = true
+[fetch]
+	prune = true
+[diff]
+	colorMoved = zebra
+[commit]
+	gpgsign = true
