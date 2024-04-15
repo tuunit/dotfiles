@@ -1,12 +1,14 @@
 [user]
-	name = tuunit
-	email = jan@larwig.com
-	signingkey = C2172BFA220A037A
+  name = tuunit
+  email = jan@larwig.com
+  signingkey = C2172BFA220A037A
 [pull]
-	rebase = true
+  rebase = true
 [fetch]
-	prune = true
+  prune = true
 [diff]
-	colorMoved = zebra
+  colorMoved = zebra
 [commit]
-	gpgsign = true
+  gpgsign = true
+[includeIf "gitdir:/home/jlarwig/"]
+  path = .gitconfig-cap
