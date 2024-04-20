@@ -5,7 +5,8 @@ else
 fi
 # Always start a tmux session
 if [ -z "$TMUX" ]; then
-  exec tmux new-session -A -s workspace
+  #exec tmux new-session -A -s workspace
+  exec tmux
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -88,7 +89,7 @@ alias vim='vim -p'
 alias code="code ."
 
 # Quick and dirty upgrade
-alias upgrade="sudo apt update && sudo apt upgrade -yq && flatpak update -y"
+alias upgrade="sudo apt update && sudo apt upgrade -y && flatpak update -y && sudo apt autoremove -y"
 
 # Replace ls with exa
 alias ls="exa"
