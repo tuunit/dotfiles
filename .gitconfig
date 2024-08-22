@@ -12,3 +12,5 @@
   gpgsign = true
 [includeIf "gitdir:/home/jlarwig/"]
   path = .gitconfig-cap
+[init]
+	defaultBranch = main
