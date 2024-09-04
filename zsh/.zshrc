@@ -35,9 +35,6 @@ plugins=(git)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 source $ZSH/oh-my-zsh.sh
 
-# hgit as a git alias for the home directory
-alias hgit='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
 # Auto load ssh session using keychain
 eval `keychain --eval id_rsa`
 export GPG_TTY=$(tty)
