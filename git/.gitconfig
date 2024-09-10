@@ -10,7 +10,7 @@
   colorMoved = zebra
 [commit]
   gpgsign = true
-[includeIf "gitdir:/home/jlarwig/"]
-  path = .gitconfig-cap
 [init]
-	defaultBranch = main
+  defaultBranch = main
+[url "ssh://git@github.com/ionos-cloud"]
+  insteadOf = https://github.com/ionos-cloud

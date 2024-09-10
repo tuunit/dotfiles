@@ -2,7 +2,7 @@
 set $mod Mod4
 
 # Monitor positioning
-exec --no-startup-id xrandr --output DP-2 --auto --right-of HDMI-0 &
+exec --no-startup-id xrandr --output DP-3 --mode 2560x1440 --pos 0x0 --output HDMI-1 --mode 3440x1440 --pos 2560x0 --output eDP-1 --mode 1920x1200 --pos 6000x720 &
 
 # Start picom compositor
 exec --no-startup-id picom
@@ -24,7 +24,7 @@ for_window [class="^.*"] border pixel 2
 gaps inner 5
 gaps outer 5
 
-exec_always "setxkbmap -layout gb,de -variant ,, -option 'grp:alt_shift_toggle'"
+exec_always --no-startup-id  "setxkbmap -layout gb,de -variant ,, -option 'grp:alt_shift_toggle'"
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -45,6 +45,10 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# Use brightnessctl to adjust screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo brightnessctl set 5%-
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -53,7 +57,10 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
+
+# make a screenshot
+bindsym $mod+Shift+s exec --no-startup-id ksnip --rectarea
 
 # kill focused window
 bindsym $mod+q kill
