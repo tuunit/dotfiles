@@ -70,7 +70,7 @@ bindsym $mod+d exec --no-startup-id rofi -show drun
 bindsym $mod+space exec --no-startup-id rofi -show combi
 bindsym $mod+Tab exec --no-startup-id rofi -show window
 
-bindsym $mod+Shift+period exec --no-startup-id ~/Desktop/dmoji
+bindsym $mod+Shift+period exec --no-startup-id ~/.config/rofi/emoji-picker
 
 # change focus
 bindsym $mod+Left focus left
