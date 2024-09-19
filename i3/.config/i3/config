@@ -8,7 +8,7 @@ exec --no-startup-id ~/.config/i3/configure_xrandr.sh
 exec --no-startup-id picom
 
 # Setup background image
-exec_always --no-startup-id feh --bg-fill $(ls ~/Wallpapers/*.jpg | shuf -n 1)
+exec --no-startup-id ~/.config/i3/random_wallpaper.sh
 
 exec_always --no-startup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_ploybar.sh
