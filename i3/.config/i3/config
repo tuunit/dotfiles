@@ -62,6 +62,9 @@ bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 # make a screenshot
 bindsym $mod+Shift+s exec --no-startup-id ksnip --rectarea
 
+# roll to next wallpaper
+bindsym $mod+w exec --no-startup-id ~/.config/i3/random_wallpaper.sh next
+
 # kill focused window
 bindsym $mod+q kill
 
