@@ -61,20 +61,20 @@ export PATH="$PATH:$GOPATH/bin"
 export PATH=$PATH:~/.porter
 
 # Custom devcontainer method for starting devcontainers from the cli
-devcontainer() {
-    cd /workspace/dev-setup/devcontainers/$1
-    /usr/bin/code --folder-uri "$(python3 /workspace/dev-setup/make_devcontainer_folder_uri.py)"
-}
+# devcontainer() {
+#     cd /workspace/dev-setup/devcontainers/$1
+#     /usr/bin/code --folder-uri "$(python3 /workspace/dev-setup/make_devcontainer_folder_uri.py)"
+# }
+# 
+# # Custom devcontainer zsh autocompletion
+# _devcontainer() {
+#     local -a container
+# 
+#     container=($(ls /workspace/dev-setup/devcontainers))
+#     _describe 'command' container
+# }
 
-# Custom devcontainer zsh autocompletion
-_devcontainer() {
-    local -a container
-
-    container=($(ls /workspace/dev-setup/devcontainers))
-    _describe 'command' container
-}
-
-compdef _devcontainer devcontainer
+# compdef _devcontainer devcontainer
 
 # Initialize workspace environment
 export WORKSPACE_DIRECTORY=/workspace
