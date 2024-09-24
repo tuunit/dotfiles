@@ -2,9 +2,9 @@
 
 if [[ $# -eq 0 ]]; then
   while true; do
-    curl -sL https://unsplash.it/3440/1440/\?random | feh --bg-fill -
+    feh --bg-fill $(ls ~/Wallpapers/*.jpg | shuf -n 1)
     sleep 300
   done
 else
-    curl -sL https://unsplash.it/3440/1440/\?random | feh --bg-fill -
+    feh --bg-fill $(ls ~/Wallpapers/*.jpg | shuf -n 1)
 fi
