@@ -12,7 +12,7 @@ Map("n", "<leader>pv", vim.cmd.Ex)
 
 -- Sudo write with :W
 vim.api.nvim_create_user_command('W', function()
-  vim.cmd("exec ':silent w !sudo tee % > /dev/null' | :edit!")
+    vim.cmd("exec ':silent w !sudo tee % > /dev/null' | :edit!")
 end, {})
 
 -- Show list symbols
@@ -53,6 +53,13 @@ Map("v", "<leader>y", "\"+y")
 
 -- Deactivate visual symetric mode
 Map("n", "Q", "<nop>")
+
+
+-- Navigate splits
+Map("n", "<C-k>", ":wincmd k<CR>")
+Map("n", "<C-j>", ":wincmd j<CR>")
+Map("n", "<C-h>", ":wincmd h<CR>")
+Map("n", "<C-l>", ":wincmd l<CR>")
 
 -- Browser
 Map("n", "<leader>b", ":NvimTreeOpen<CR>")
