@@ -57,9 +57,6 @@ eval "$(goenv init -)"
 export PATH="$GOROOT/bin:$PATH"
 export PATH="$PATH:$GOPATH/bin"
 
-# porter
-export PATH=$PATH:~/.porter
-
 # Custom devcontainer method for starting devcontainers from the cli
 # devcontainer() {
 #     cd /workspace/dev-setup/devcontainers/$1
