@@ -1,5 +1,5 @@
 [user]
-  name = tuunit
+  name = Jan Larwig
   email = jan@larwig.com
   signingkey = C2172BFA220A037A
 [pull]
@@ -14,3 +14,5 @@
   defaultBranch = main
 [url "ssh://git@github.com/ionos-cloud"]
   insteadOf = https://github.com/ionos-cloud
+[includeIf "hasconfig:remote.*.url:git@github.com:ionos-cloud/**"]
+  path = ~/.gitconfig-work
