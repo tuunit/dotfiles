@@ -95,3 +95,4 @@ alias tree="exa --tree"
 
 # Replace cat with bat
 alias cat="batcat"
+alias catty="cat -l yaml"
