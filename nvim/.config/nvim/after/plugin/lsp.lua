@@ -50,6 +50,7 @@ local servers = {
 	'marksman',
 	'helm_ls',
 	'ansiblels',
+	'bashls',
 }
 
 require('mason-lspconfig').setup({
