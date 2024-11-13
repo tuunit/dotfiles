@@ -81,6 +81,7 @@ export EDITOR='nvim'
 
 # Always use vim with the pages / tabs parameter
 alias vim='vim -p'
+alias gvim="git status --porcelain | awk '{print \$2}' | xargs vim -p"
 
 # Always open the current directory when just typing 'code'
 alias code="code ."
