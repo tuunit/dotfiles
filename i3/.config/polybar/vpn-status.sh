@@ -11,7 +11,7 @@ if [[ "$TUNTAPS" != "0" || "$NORD" != "0" ]]; then
         | ip -4 -j addr show | jq '[ .[] | select( .ifname | (startswith("nord") or startswith("tun")) ) | .addr_info[0].local ]' \
         | jq -r 'join(", ")'\
     )
-    echo "🛡️ %{u#55aa55}${MESSAGE_UP}%{u-}"
+    echo "🔐 %{u#55aa55}${MESSAGE_UP}%{u-}"
 else
-    echo "🛡️ %{F#FF0000}%{u#FF0000}disconnected%{u-}%{F-}"
+    echo "🔓️ %{F#FF0000}%{u#FF0000}-%{u-}%{F-}"
 fi
