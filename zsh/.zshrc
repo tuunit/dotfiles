@@ -93,9 +93,9 @@ alias code="code ."
 alias upgrade="sudo apt update && sudo apt upgrade -y && flatpak update -y && sudo apt autoremove -y"
 
 # Replace ls with exa
-alias ls="exa"
-alias ll="exa -alh"
-alias tree="exa --tree"
+alias ls="eza"
+alias ll="eza -alh"
+alias tree="eza --tree"
 
 # Replace cat with bat
 alias cat="batcat"
