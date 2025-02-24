@@ -10,7 +10,11 @@
   colorMoved = zebra
 [commit]
   gpgsign = true
+[tag]
+  gpgsign = true
 [init]
   defaultBranch = main
+[alias]
+  cs = commit --signoff --gpg-sign
 [url "ssh://git@github.com/ionos-cloud"]
   insteadOf = https://github.com/ionos-cloud
