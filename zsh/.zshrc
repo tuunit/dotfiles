@@ -36,7 +36,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 source $ZSH/oh-my-zsh.sh
 
 # Auto load ssh session using keychain
-eval `keychain --eval id_rsa`
+eval `keychain --eval id_ed25519`
 export GPG_TTY=$(tty)
 
 # Initialize nvm
