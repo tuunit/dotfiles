@@ -36,21 +36,30 @@ lsp_zero.on_attach(function(client, bufnr)
 	-- vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
 	-- Autoformat
-	vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		callback = function()
+			local mode = vim.api.nvim_get_mode().mode
+			if vim.bo.modified == true and mode == 'n' then
+				vim.cmd('lua vim.lsp.buf.format()')
+			end
+		end
+	})
 end)
 
 
 require('mason').setup()
 
 local servers = {
-	'lua_ls',
-	'gopls',
-	'pyright',
-	'jsonls',
-	'marksman',
-	'helm_ls',
-	'ansiblels',
 	'bashls',
+	'lua_ls',
+	'vimls',
+	'gopls',
+	'golangci_lint_ls',
+	'jqls',
+	'marksman',
+	'yamlls',
+	'dockerls',
+	'terraformls'
 }
 
 require('mason-lspconfig').setup({
@@ -60,6 +69,21 @@ require('mason-lspconfig').setup({
 		lua_ls = function()
 			local lua_opts = lsp_zero.nvim_lua_ls()
 			require('lspconfig').lua_ls.setup(lua_opts)
+		end,
+		yamlls = function()
+			require('lspconfig').yamlls.setup {
+				settings = {
+					yaml = {
+						format = {
+							enable = true,
+							singleQuote = false,
+							bracketSpacing = true
+						},
+						validate = true,
+						completion = true
+					}
+				}
+			}
 		end,
 	}
 })
