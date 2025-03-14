@@ -44,6 +44,11 @@ lsp_zero.on_attach(function(client, bufnr)
 			end
 		end
 	})
+
+	-- Write file without autoformatting :NoFormat
+	vim.api.nvim_create_user_command('NoFormat', function()
+		vim.cmd('noautocmd write')
+	end, {})
 end)
 
 
