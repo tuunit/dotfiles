@@ -32,7 +32,6 @@ SAVEHIST=1000000000
 HIST_STAMPS="yyyy-mm-dd"
 
 plugins=(git)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 source $ZSH/oh-my-zsh.sh
 
 # Auto load ssh session using keychain
