@@ -51,16 +51,8 @@ Map("x", "<leader>p", "\"_dP")
 Map("n", "<leader>y", "\"+y")
 Map("v", "<leader>y", "\"+y")
 
--- Deactivate visual symetric mode
-Map("n", "Q", "<nop>")
-
-
 -- Navigate splits
 Map("n", "<C-k>", ":wincmd k<CR>")
 Map("n", "<C-j>", ":wincmd j<CR>")
 Map("n", "<C-h>", ":wincmd h<CR>")
 Map("n", "<C-l>", ":wincmd l<CR>")
-
--- Browser
-Map("n", "<leader>b", ":NvimTreeOpen<CR>")
-Map("n", "<leader>e", ":NvimTreeClose<CR>")
