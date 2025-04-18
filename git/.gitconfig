@@ -18,3 +18,5 @@
   cs = commit --signoff --gpg-sign
 [url "ssh://git@github.com/ionos-cloud"]
   insteadOf = https://github.com/ionos-cloud
+[core]
+  sshCommand = ssh -i ~/.ssh/id_ed25519
