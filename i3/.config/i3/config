@@ -10,6 +10,9 @@ exec --no-startup-id picom
 # Setup background image
 exec --no-startup-id ~/.config/i3/random_wallpaper.sh
 
+# Setup i3 low battery warning popup
+exec --no-startup-id ~/.config/i3/i3-battery-popup
+
 exec_always --no-startup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_ploybar.sh
 
