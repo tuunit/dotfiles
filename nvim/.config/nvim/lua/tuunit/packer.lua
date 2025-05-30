@@ -95,13 +95,6 @@ return require('packer').startup(function(use)
 		end
 	})
 
-	-- devcontainer
-	use({
-		'esensar/nvim-dev-container',
-		config = function() require('devcontainer').setup {} end
-	})
-
-
 	use("mfussenegger/nvim-dap")
 	use({ "nvim-neotest/nvim-nio" })
 	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
