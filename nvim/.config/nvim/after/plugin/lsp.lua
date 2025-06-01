@@ -51,7 +51,6 @@ lsp_zero.on_attach(function(client, bufnr)
 	end, {})
 end)
 
-
 require('mason').setup()
 
 local servers = {
@@ -63,8 +62,7 @@ local servers = {
 	'jqls',
 	'marksman',
 	'yamlls',
-	'dockerls',
-	'terraformls'
+	'dockerls'
 }
 
 require('mason-lspconfig').setup({
@@ -84,7 +82,7 @@ require('mason-lspconfig').setup({
 							singleQuote = false,
 							bracketSpacing = true
 						},
-						validate = true,
+						validate = false,
 						completion = true
 					}
 				}
