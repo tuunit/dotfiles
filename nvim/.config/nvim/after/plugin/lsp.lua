@@ -1,5 +1,7 @@
 local lsp_zero = require('lsp-zero')
 
+lsp_zero.extend_lspconfig()
+
 lsp_zero.on_attach(function(client, bufnr)
 	local nmap = function(keys, func, desc)
 		if desc then
@@ -40,55 +42,62 @@ lsp_zero.on_attach(function(client, bufnr)
 		callback = function()
 			local mode = vim.api.nvim_get_mode().mode
 			if vim.bo.modified == true and mode == 'n' then
-				vim.cmd('lua vim.lsp.buf.format()')
+				vim.lsp.buf.format()
 			end
 		end
 	})
 
+	-- Write file without autoformatting :NoFormat
+	vim.api.nvim_create_user_command('NoFormat', function()
+		vim.cmd('noautocmd write')
+	end, {})
 end)
 
 require('mason').setup()
 
-local servers = {
-	'bashls',
-	'lua_ls',
-	'vimls',
-	'gopls',
-	'golangci_lint_ls',
-	'jqls',
-	'marksman',
-	'yamlls',
-	'dockerls'
-}
-
 require('mason-lspconfig').setup({
-	ensure_installed = servers,
-	handlers = {
-		lsp_zero.default_setup,
-		lua_ls = function()
-			local lua_opts = lsp_zero.nvim_lua_ls()
-			require('lspconfig').lua_ls.setup(lua_opts)
-		end,
-		yamlls = function()
-			require('lspconfig').yamlls.setup {
-				settings = {
-					yaml = {
-						format = {
-							enable = true,
-							singleQuote = false,
-							bracketSpacing = true
-						},
-						validate = false,
-						completion = true
-					}
-				}
-			}
-		end,
+	ensure_installed = {
+		'bashls',
+		'lua_ls',
+		'vimls',
+		'gopls',
+		'golangci_lint_ls',
+		'jqls',
+		'marksman',
+		'yamlls',
+		'dockerls',
+		'terraformls'
+	}
+})
+
+local lspconfig = require('lspconfig')
+
+lspconfig.bashls.setup({})
+lspconfig.vimls.setup({})
+lspconfig.gopls.setup({})
+lspconfig.golangci_lint_ls.setup({})
+lspconfig.jqls.setup({})
+lspconfig.marksman.setup({})
+lspconfig.dockerls.setup({})
+lspconfig.terraformls.setup({})
+
+lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls())
+
+lspconfig.yamlls.setup({
+	settings = {
+		yaml = {
+			format = {
+				enable = true,
+				singleQuote = false,
+				bracketSpacing = true
+			},
+			validate = true,
+			completion = true
+		}
 	}
 })
 
 local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
 	sources = {
@@ -96,19 +105,14 @@ cmp.setup({
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lua' },
 		{ name = 'luasnip', keyword_length = 2 },
-		{ name = 'buffer',  keyword_length = 3 },
+		{ name = 'buffer', keyword_length = 3 },
 	},
 	formatting = lsp_zero.cmp_format(),
 	mapping = cmp.mapping.preset.insert({
-		['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-		['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+		['<C-p>'] = cmp.mapping.select_prev_item(),
+		['<C-n>'] = cmp.mapping.select_next_item(),
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<Tab>'] = cmp.mapping.confirm({ select = true }),
 		['<Esc>'] = cmp.mapping.abort(),
 	}),
 })
-
--- Write file without autoformatting :NoFormat
-vim.api.nvim_create_user_command('NoFormat', function()
-	vim.cmd('noautocmd write')
-end, {})
