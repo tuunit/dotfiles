@@ -89,7 +89,7 @@ function vimdiff() {
 alias code="code ."
 
 # Quick and dirty upgrade
-alias upgrade="sudo apt update && sudo apt upgrade -y && flatpak update -y && sudo apt autoremove -y"
+alias upgrade="sudo apt update && sudo apt upgrade -y && flatpak update -y && sudo apt autoremove -y && (cd ~/.oh-my-zsh/ && git pull && cd custom/themes/powerlevel10k/ && git pull)"
 
 # Replace ls with exa
 alias ls="eza"
