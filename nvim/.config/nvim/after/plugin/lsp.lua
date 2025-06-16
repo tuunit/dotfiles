@@ -16,8 +16,8 @@ lsp_zero.on_attach(function(client, bufnr)
 	nmap("gD", "<cmd>tab split | lua vim.lsp.buf.definition()<CR>", '[G]oto [D]efinition in new tab')
 	nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 	nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+	nmap('gp', vim.diagnostic.goto_prev, '[G]oto [p]revious diagnostics')
 	nmap('gn', vim.diagnostic.goto_next, '[G]oto [n]ext diagnostics')
-	nmap('gp', vim.diagnostic.goto_next, '[G]oto [p]revious diagnostics')
 	nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
 	nmap('<leader>rt', vim.lsp.buf.rename, '[R]ename [T]ype')
 	nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
@@ -45,10 +45,6 @@ lsp_zero.on_attach(function(client, bufnr)
 		end
 	})
 
-	-- Write file without autoformatting :NoFormat
-	vim.api.nvim_create_user_command('NoFormat', function()
-		vim.cmd('noautocmd write')
-	end, {})
 end)
 
 require('mason').setup()
@@ -111,3 +107,8 @@ cmp.setup({
 		['<Esc>'] = cmp.mapping.abort(),
 	}),
 })
+
+-- Write file without autoformatting :NoFormat
+vim.api.nvim_create_user_command('NoFormat', function()
+	vim.cmd('noautocmd write')
+end, {})
