@@ -6,11 +6,14 @@ return require('packer').startup(function(use)
 
 	-- theme
 	use({
-		--'folke/tokyonight.nvim',
-		'rebelot/kanagawa.nvim',
+		"loctvl842/monokai-pro.nvim",
 		config = function()
-			vim.cmd('colorscheme kanagawa-wave')
-		end
+			local monokai = require('monokai-pro')
+			monokai.setup({
+				filter = "octagon"
+			})
+			monokai.load()
+		end,
 	})
 
 	-- statusline support
@@ -18,7 +21,8 @@ return require('packer').startup(function(use)
 		'nvim-lualine/lualine.nvim',
 		requires = {
 			'nvim-tree/nvim-web-devicons',
-			opt = true
+			opt = true,
+			theme = 'monokai-pro'
 		}
 	})
 

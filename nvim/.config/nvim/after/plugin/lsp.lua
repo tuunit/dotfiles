@@ -70,20 +70,16 @@ require('mason-lspconfig').setup({
 	}
 })
 
-local lspconfig = require('lspconfig')
-
-lspconfig.bashls.setup({})
-lspconfig.vimls.setup({})
-lspconfig.gopls.setup({})
-lspconfig.golangci_lint_ls.setup({})
-lspconfig.jqls.setup({})
-lspconfig.marksman.setup({})
-lspconfig.dockerls.setup({})
-lspconfig.terraformls.setup({})
-
-lspconfig.lua_ls.setup(lsp_zero.nvim_lua_ls())
-
-lspconfig.yamlls.setup({
+vim.lsp.config('bashls', {})
+vim.lsp.config('vimls', {})
+vim.lsp.config('gopls', {})
+vim.lsp.config('golangci_lint_ls', {})
+vim.lsp.config('jqls', {})
+vim.lsp.config('marksman', {})
+vim.lsp.config('dockerls', {})
+vim.lsp.config('terraformls', {})
+vim.lsp.config('lua_ls', lsp_zero.nvim_lua_ls())
+vim.lsp.config('yamlls', {
 	settings = {
 		yaml = {
 			format = {
@@ -105,7 +101,7 @@ cmp.setup({
 		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lua' },
 		{ name = 'luasnip', keyword_length = 2 },
-		{ name = 'buffer', keyword_length = 3 },
+		{ name = 'buffer',  keyword_length = 3 },
 	},
 	formatting = lsp_zero.cmp_format(),
 	mapping = cmp.mapping.preset.insert({
