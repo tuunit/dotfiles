@@ -2,7 +2,7 @@
 set $mod Mod4
 
 # Monitor positioning
-exec --no-startup-id ~/.config/i3/configure_xrandr.sh
+exec_always --no-startup-id ~/.config/i3/configure_xrandr.sh
 
 # Start picom compositor
 exec --no-startup-id picom
