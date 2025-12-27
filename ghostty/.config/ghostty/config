@@ -48,4 +48,4 @@
 # # Just for example:
 # resize-overlay-duration = 4s 200ms
 theme = Monokai Pro Octagon
-working-directory = /workspace
+working-directory = /Users/tuunit/workspace

@@ -43,12 +43,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/opt/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/opt/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/google-cloud-sdk/completion.zsh.inc'; fi
-
 # go version management
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
@@ -73,23 +67,31 @@ export PATH="$PATH:$GOPATH/bin"
 # compdef _devcontainer devcontainer
 
 # Initialize workspace environment
-export WORKSPACE_DIRECTORY=/workspace
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  export WORKSPACE_DIRECTORY=/Users/tuunit/workspace
+else
+  export WORKSPACE_DIRECTORY=/workspace
+fi
 
 # Neovim as default editor
 export EDITOR='nvim'
 
 # Always use vim with the pages / tabs parameter
-alias vim='vim -p'
+alias vim='nvim'
 alias vimg="git status --porcelain | awk '{print \$2}' | xargs vim -p"
 function vimdiff() {
   git diff --name-only "$1" | xargs vim -p
 }
 
+# Quick and dirty upgrade
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  alias upgrade="brew update && brew upgrade && (cd ~/.oh-my-zsh/ && git pull && cd custom/themes/powerlevel10k/ && git pull)"
+else
+  alias upgrade="sudo apt update && sudo apt upgrade -y && flatpak update -y && sudo apt autoremove -y && (cd ~/.oh-my-zsh/ && git pull && cd custom/themes/powerlevel10k/ && git pull)"
+fi
+
 # Always open the current directory when just typing 'code'
 alias code="code ."
-
-# Quick and dirty upgrade
-alias upgrade="sudo apt update && sudo apt upgrade -y && flatpak update -y && sudo apt autoremove -y && (cd ~/.oh-my-zsh/ && git pull && cd custom/themes/powerlevel10k/ && git pull)"
 
 # Replace ls with exa
 alias ls="eza"
@@ -97,12 +99,12 @@ alias ll="eza -alh"
 alias tree="eza --tree"
 
 # Replace cat with bat
-alias cat="batcat"
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  alias cat="bat"
+else
+  alias cat="batcat"
+fi
 alias copper="cat -l yaml"
-
-# qlty
-export QLTY_INSTALL="$HOME/.qlty"
-export PATH="$QLTY_INSTALL/bin:$PATH"
 
 # kubectl completion
 source <(kubectl completion zsh)
