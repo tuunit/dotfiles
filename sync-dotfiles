@@ -15,7 +15,7 @@ if [ "$stash_result" = "No local changes to save" ]; then
 fi
 
 echo -e "${BLUE}Pulling updates from dotfiles repo...${NC}\n"
-git pull origin master
+git pull
 echo
 
 if [[ $needs_pop -eq 1 ]]; then
@@ -31,6 +31,9 @@ else
    echo -e "${BLUE}Run stow to ensure all new dotfiles are linked.${NC}"
    # Run stow to ensure all new dotfiles are linked
    for package in */; do
+      [[ -f "${package}/.ignore" ]] && continue
+      [[ -f "${package}/.ignore-on-darwin" && "$(uname -s)" == "Darwin" ]] && continue
+      [[ -f "${package}/.ignore-on-linux" && "$(uname -s)" == "Linux" ]] && continue
       echo -e "${BLUE}Stow package: ${package}${NC}"
       stow -t ~ $package
    done
