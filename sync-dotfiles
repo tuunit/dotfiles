@@ -35,7 +35,7 @@ else
       [[ -f "${package}/.ignore-on-darwin" && "$(uname -s)" == "Darwin" ]] && continue
       [[ -f "${package}/.ignore-on-linux" && "$(uname -s)" == "Linux" ]] && continue
       echo -e "${BLUE}Stow package: ${package}${NC}"
-      stow -t ~ $package
+      stow -t ~ --ignore=".ignore-on-(linux|darwin)" $package 
    done
 fi
 
