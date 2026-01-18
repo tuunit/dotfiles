@@ -47,8 +47,17 @@ export NVM_DIR="$HOME/.nvm"
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
 eval "$(goenv init -)"
-export PATH="$GOROOT/bin:$PATH"
-export PATH="$PATH:$GOPATH/bin"
+export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
+
+install-go() {
+  [[ -z "$1" ]] && echo "Usage: install-go <version>" && return 1
+  cd "$GOENV_ROOT/plugins/go-build/../.." && git pull && cd - || return 1
+  goenv install "$1" || return 1
+  goenv global "$1" || return 1
+  eval "$(goenv init -)"
+  export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
+  install-go-tools
+}
 
 # Custom devcontainer method for starting devcontainers from the cli
 # devcontainer() {

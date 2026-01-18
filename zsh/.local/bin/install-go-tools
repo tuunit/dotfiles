@@ -1,0 +1,21 @@
+#!/bin/bash
+set -e
+
+tools=(
+  "github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest"
+  "sigs.k8s.io/kind@latest"
+  "github.com/go-delve/delve/cmd/dlv@latest"
+  "golang.org/x/tools/gopls@latest"
+  "github.com/cweill/gotests/gotests@latest"
+  "github.com/josharian/impl@latest"
+  "github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest"
+  "github.com/sqlc-dev/sqlc/cmd/sqlc@latest"
+  "honnef.co/go/tools/cmd/staticcheck@latest"
+)
+
+for tool in "${tools[@]}"; do
+  echo "Installing $tool..."
+  go install "$tool"
+done
+
+echo "Done."
