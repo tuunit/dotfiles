@@ -4,8 +4,7 @@ else
   export TERM="screen-256color"
 fi
 # Always start a tmux session
-if [ -z "$TMUX" ]; then
-  #exec tmux new-session -A -s workspace
+if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
   exec tmux
 fi
 
