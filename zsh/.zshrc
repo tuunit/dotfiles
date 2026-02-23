@@ -1,10 +1,13 @@
-if [ "$TERM_PROGRAM" = "vscode" ]; then
+# Skip for non-interactive or non-terminal processes like VSCode shell
+[[ -t 0 ]] || return
+
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
   export TERM="xterm-256color"
 else
   export TERM="screen-256color"
 fi
 # Always start a tmux session
-if [ -z "$TMUX" ] && [ "$TERM_PROGRAM" != "vscode" ]; then
+if [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$TMUX" ]]; then
   exec tmux
 fi
 
