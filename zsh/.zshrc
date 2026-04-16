@@ -58,7 +58,7 @@ install-go() {
   goenv global "$1" || return 1
   eval "$(goenv init -)"
   export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
-  install-go-tools
+  install-go-dev-tools
 }
 
 # Custom devcontainer method for starting devcontainers from the cli
