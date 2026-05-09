@@ -2,6 +2,8 @@
 # This won't be added again if you remove it.
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # GNU coreutils integration
 export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 export MANPATH="/opt/homebrew/opt/coreutils/libexec/gnuman:$MANPATH"
@@ -14,4 +16,3 @@ export MANPATH="/opt/homebrew/opt/grep/libexec/gnuman:$MANPATH"
 
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export MANPATH="/opt/homebrew/opt/gnu-sed/libexec/gnuman:$MANPATH"
-

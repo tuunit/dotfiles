@@ -1,3 +1,13 @@
+HISTSIZE=1000000000
+SAVEHIST=1000000000
+HIST_STAMPS="yyyy-mm-dd"
+
+# go version management
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
+
 # Skip for non-interactive or non-terminal processes like VSCode shell
 [[ -t 0 ]] || return
 
@@ -18,9 +28,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.pub-cache/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -29,10 +36,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-HISTSIZE=1000000000
-SAVEHIST=1000000000
-HIST_STAMPS="yyyy-mm-dd"
-
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
@@ -40,16 +43,13 @@ source $ZSH/oh-my-zsh.sh
 eval `keychain --eval id_ed25519`
 export GPG_TTY=$(tty)
 
+# If you come from bash you might have to change your $PATH.
+export PATH=$HOME/.pub-cache/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
+
 # Initialize nvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# go version management
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
-export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
 
 install-go() {
   [[ -z "$1" ]] && echo "Usage: install-go <version>" && return 1
@@ -79,7 +79,13 @@ install-go() {
 
 # Initialize workspace environment
 if [[ "$(uname -s)" == "Darwin" ]]; then
-  export WORKSPACE_DIRECTORY=/Users/tuunit/workspace
+  export WORKSPACE_DIRECTORY=$HOME/workspace
+
+  export ANDROID_HOME=$HOME/Library/Android/sdk
+  export PATH=$PATH:$ANDROID_HOME/platform-tools
+  export PATH=$PATH:$ANDROID_HOME/tools
+  export PATH=$PATH:$ANDROID_HOME/tools/bin
+  export PATH=$PATH:$ANDROID_HOME/emulator
 else
   export WORKSPACE_DIRECTORY=/workspace
 fi
