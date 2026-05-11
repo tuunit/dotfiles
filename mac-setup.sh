@@ -1,3 +1,6 @@
+sudo defaults write -g ApplePressAndHoldEnabled -bool false
+defaults write -g ApplePressAndHoldEnabled -bool false
+
 brew install --cask nikitabobko/tap/aerospace
 brew install bat
 brew install btop

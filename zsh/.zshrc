@@ -8,6 +8,12 @@ export PATH="$GOENV_ROOT/bin:$PATH"
 eval "$(goenv init -)"
 export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
 
+# Initialize nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # Skip for non-interactive or non-terminal processes like VSCode shell
 [[ -t 0 ]] || return
 
@@ -45,11 +51,6 @@ export GPG_TTY=$(tty)
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.pub-cache/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
-
-# Initialize nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 install-go() {
   [[ -z "$1" ]] && echo "Usage: install-go <version>" && return 1
