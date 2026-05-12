@@ -4,6 +4,7 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 brew install --cask nikitabobko/tap/aerospace
 brew install bat
 brew install btop
+brew install colima
 brew install coreutils
 brew install eza
 brew install gh
@@ -26,7 +27,6 @@ brew install obs
 brew install obsidian
 brew install openssl
 brew install opentofu
-brew install orbstack
 brew install s5cmd
 brew install stow
 brew install syncthing
