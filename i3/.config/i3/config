@@ -1,5 +1,5 @@
 # Windows mod key
-set $mod Mod4
+set $mod Mod1
 
 # Monitor positioning
 exec --no-startup-id ~/.config/i3/configure_xrandr.sh
@@ -27,7 +27,7 @@ for_window [class="^.*"] border pixel 2
 gaps inner 5
 gaps outer 5
 
-exec_always --no-startup-id  "setxkbmap -layout gb,de -variant ,, -option 'grp:alt_shift_toggle'"
+exec_always --no-startup-id  "setxkbmap -layout gb,de -option 'lv3:ralt_alt,grp:alt_space_toggle'"
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
