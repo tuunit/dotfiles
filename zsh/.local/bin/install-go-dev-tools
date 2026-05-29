@@ -2,15 +2,16 @@
 set -e
 
 tools=(
-  "github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest"
-  "sigs.k8s.io/kind@latest"
-  "github.com/go-delve/delve/cmd/dlv@latest"
-  "golang.org/x/tools/gopls@latest"
   "github.com/cweill/gotests/gotests@latest"
+  "github.com/go-delve/delve/cmd/dlv@latest"
+  "github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest"
+  "github.com/haya14busa/goplay/cmd/goplay@latest"
   "github.com/josharian/impl@latest"
   "github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest"
   "github.com/sqlc-dev/sqlc/cmd/sqlc@latest"
+  "golang.org/x/tools/gopls@latest"
   "honnef.co/go/tools/cmd/staticcheck@latest"
+  "sigs.k8s.io/kind@latest"
 )
 
 for tool in "${tools[@]}"; do
