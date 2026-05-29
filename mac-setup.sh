@@ -34,3 +34,8 @@ brew install tmux
 brew install uv
 brew install watch
 brew install yq
+brew install git-lfs
+brew install git-xet
+brew install git-delta
+
+git clone https://github.com/go-nv/goenv.git ~/.goenv
