@@ -16,3 +16,8 @@ export MANPATH="/opt/homebrew/opt/grep/libexec/gnuman:$MANPATH"
 
 export PATH="/opt/homebrew/opt/gnu-sed/libexec/gnubin:$PATH"
 export MANPATH="/opt/homebrew/opt/gnu-sed/libexec/gnuman:$MANPATH"
+
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+export PATH="$GOROOT/bin:$GOPATH/bin:$PATH"
