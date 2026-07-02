@@ -9,33 +9,51 @@ return {
 		config = function()
 			local dap = require("dap")
 			local dapui = require("dapui")
+			local dapgo = require("dap-go")
 
-			dapui.setup()
-			require("dap-go").setup()
+      
+      -- Dap UI setup
+      dapui.setup({
+          icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+          controls = {
+              icons = {
+                  pause = '⏸',
+                  play = '▶',
+                  step_into = '⏎',
+                  step_over = '⏭',
+                  step_out = '⏮',
+                  step_back = 'b',
+                  run_last = '▶▶',
+                  terminate = '⏹',
+                  disconnect = '⏏',
+              },
+          },
+      })
+			dapgo.setup()
 
 			-- Auto-open/close UI
-			dap.listeners.before.attach.dapui_config = function()
-				dapui.open()
-			end
-			dap.listeners.before.launch.dapui_config = function()
-				dapui.open()
-			end
-			dap.listeners.before.event_terminated.dapui_config = function()
-				dapui.close()
-			end
-			dap.listeners.before.event_exited.dapui_config = function()
-				dapui.close()
-			end
+			dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+
+			vim.keymap.set("n", "<leader>du", dapui.toggle, { desc = "Debug: Toggle UI" })
+
+			vim.keymap.set("n", "<leader>dgt", dapgo.debug_test, { desc = "Debug: Go Test" })
+      vim.keymap.set("n", "<leader>?", function()
+        require("dapui").eval(nil, { enter = true })
+      end)
+
+			vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
+			vim.keymap.set("n", "<leader>B",
+        function()
+			  	dap.set_breakpoint(vim.fn.input("Condition: "))
+			  end,
+        { desc = "Debug: Toggle Conditional Breakpoint" }
+      )
+      vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "DapBreakpointColor", linehl = "", numhl = "" })
 
 			vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: Continue" })
 			vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Debug: Step Over" })
 			vim.keymap.set("n", "<F11>", dap.step_into, { desc = "Debug: Step Into" })
 			vim.keymap.set("n", "<F12>", dap.step_out, { desc = "Debug: Step Out" })
-			vim.keymap.set("n", "<leader>b", dap.toggle_breakpoint, { desc = "Debug: Toggle Breakpoint" })
-			vim.keymap.set("n", "<leader>B", function()
-				dap.set_breakpoint(vim.fn.input("Condition: "))
-			end)
-			vim.keymap.set("n", "<leader>dr", dapui.toggle, { desc = "Debug: Toggle UI" })
 		end,
 	},
 	{
@@ -45,7 +63,20 @@ return {
 				enabled = true,
 				all_frames = false,
 				commented = false,
+        display_callback = function(variable)
+          if #variable.value > 15 then
+            return " " .. string.sub(variable.value, 1, 15) .. "... "
+          end
+
+          return " " .. variable.value
+        end
 			})
 		end,
 	},
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {},
+  },
 }

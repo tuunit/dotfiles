@@ -30,7 +30,7 @@ return {
         builtin.grep_string({ search = vim.fn.input("Grep: ") })
       end, { desc = "Search in files" })
       vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Git files" })
-      vim.keymap.set("n", "<leader>?", builtin.keymaps, { desc = "Show all keymaps" })
+      vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Show all keymaps" })
     end,
   },
 }
