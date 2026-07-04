@@ -48,7 +48,8 @@ return {
 			  end,
         { desc = "Debug: Toggle Conditional Breakpoint" }
       )
-      vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "DapBreakpointColor", linehl = "", numhl = "" })
+      vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "SignColumn", linehl = "", numhl = "" })
+      vim.fn.sign_define("DapBreakpointCondition", { text = "⭕️", texthl = "SignColumn", linehl = "", numhl = "" })
 
 			vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: Continue" })
 			vim.keymap.set("n", "<F10>", dap.step_over, { desc = "Debug: Step Over" })
