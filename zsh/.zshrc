@@ -110,12 +110,7 @@ alias ls="eza"
 alias ll="eza -alh"
 alias tree="eza --tree"
 
-# Replace cat with bat
-if [[ "$(uname -s)" == "Darwin" ]]; then
-  alias cat="bat"
-else
-  alias cat="batcat"
-fi
+alias cat="bat"
 alias copper="cat -l yaml"
 
 # kubectl completion
