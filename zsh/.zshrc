@@ -21,6 +21,11 @@ if [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$TMUX" ]]; then
   exec tmux
 fi
 
+# Auto load ssh and gpg session using keychain
+export SSH_ASKPASS_REQUIRE=never
+export GPG_TTY=$(tty)
+eval "$(keychain --eval --nogui --quick id_ed25519 CBA9204EE159ECB70A73470EC2172BFA220A037A)"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -38,10 +43,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
-
-# Auto load ssh session using keychain
-eval `keychain --eval id_ed25519`
-export GPG_TTY=$(tty)
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/.pub-cache/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
@@ -115,3 +116,5 @@ alias copper="cat -l yaml"
 
 # kubectl completion
 source <(kubectl completion zsh)
+
+calc() { python3 -c "print($@)" }
