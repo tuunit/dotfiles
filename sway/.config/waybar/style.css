@@ -1,0 +1,30 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "SauceCodePro Nerd Font";
+  font-size: 12px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: #1e1e2e;
+  color: #cdd6f4;
+}
+
+#workspaces button,
+#window,
+#pulseaudio,
+#network,
+#battery,
+#clock,
+#tray {
+  padding: 0 8px;
+}
+
+#workspaces button.focused {
+  background: #45475a;
+}
+
+#battery.critical:not(.charging) {
+  color: #f38ba8;
+}

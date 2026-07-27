@@ -111,7 +111,11 @@ alias ls="eza"
 alias ll="eza -alh"
 alias tree="eza --tree"
 
-alias cat="bat"
+if (( $+commands[bat] )); then
+  alias cat="bat"
+elif (( $+commands[batcat] )); then
+  alias cat="batcat"
+fi
 alias copper="cat -l yaml"
 
 # kubectl completion
