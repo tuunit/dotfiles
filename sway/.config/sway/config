@@ -25,7 +25,7 @@ exec dex --autostart --environment sway
 # Wayland-native session services.
 exec waybar
 exec mako
-exec kanshi
+exec_always kanshi
 exec swaybg -c '#1e1e2e'
 exec swayidle -w \
     timeout 300 'swaylock -f -c 000000' \
@@ -45,15 +45,24 @@ bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy --type image/png
 # Applications and session controls.
 bindsym $mod+Return exec $term
 bindsym $mod+d exec $menu
-bindsym $mod+space exec $menu
+bindsym $mod+Shift+e exec ~/.config/sway/power_menu.sh
 #bindsym $mod+Tab exec swayr switch-window
 bindsym $mod+q kill
 bindsym $mod+l exec swaylock -f -c 000000
 bindsym $mod+Shift+r reload
-bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit Sway?' -B 'Exit' 'swaymsg exit'
+
+# Floating controls
+floating_modifier $mod normal
+bindsym $mod+Shift+space floating toggle
+
+# Mega
+for_window [title="MEGAsync"] floating enable
+
+# Google Meet
+for_window [class="Google-chrome" title="^Meet - .* - Google Chrome"] inhibit_idle visible
+for_window [class="Google-chrome" title="^(?!Meet)"] inhibit_idle none
 
 # Tiling controls.
-floating_modifier $mod normal
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -68,7 +77,6 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
-bindsym $mod+Shift+space floating toggle
 bindsym $mod+a focus parent
 
 set $ws1 1

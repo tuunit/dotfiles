@@ -4,10 +4,16 @@
   "height": 24,
   "modules-left": ["sway/workspaces"],
   "modules-center": ["sway/window"],
-  "modules-right": ["pulseaudio", "network", "battery", "clock", "tray"],
+  "modules-right": ["sway/language", "pulseaudio", "network", "battery", "clock", "tray"],
   "sway/workspaces": {
     "disable-scroll": true,
-    "all-outputs": true
+    "all-outputs": true,
+    "persistent-workspaces": {
+      "*": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    }
+  },
+  "sway/language": {
+    "format": "  {shortDescription}"
   },
   "tray": {
     "spacing": 4
