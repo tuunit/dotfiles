@@ -45,7 +45,7 @@ bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy --type image/png
 # Applications and session controls.
 bindsym $mod+Return exec $term
 bindsym $mod+d exec $menu
-bindsym $mod+Shift+e exec ~/.config/sway/power_menu.sh
+bindsym $mod+Shift+q exec ~/.config/sway/power_menu.sh
 #bindsym $mod+Tab exec swayr switch-window
 bindsym $mod+q kill
 bindsym $mod+l exec swaylock -f -c 000000
