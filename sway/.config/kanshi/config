@@ -1,10 +1,13 @@
-# Laptop display with the Huawei ZQE-CBA ultrawide positioned to its right.
 profile laptop-and-external {
     output eDP-1 enable mode 1920x1200@60.003Hz position 0,600
     output "Huawei Technologies Co., Inc. ZQE-CBA 0xC080F622" enable mode 3440x1440@49.987Hz position 1920,0
 }
 
-# Use the internal panel when the external monitor is disconnected.
 profile laptop-only {
     output eDP-1 enable mode 1920x1200@60.003Hz position 0,0
+}
+
+profile tower {
+    output "Huawei Technologies Co., Inc. ZQE-CBA 0xC080F622" enable mode 3440x1440@144.000Hz position 0,0
+    output "Lenovo Group Limited P27q-30 V30C0Z84" enable mode 2560x1440@69.965Hz position 3440,0
 }

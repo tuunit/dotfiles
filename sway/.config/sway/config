@@ -55,12 +55,14 @@ bindsym $mod+Shift+r reload
 floating_modifier $mod normal
 bindsym $mod+Shift+space floating toggle
 
+# Android Emulator
+for_window [title="Android Emulator.*"] floating enable
+
 # Mega
 for_window [title="MEGAsync"] floating enable
 
 # Google Meet
-for_window [class="Google-chrome" title="^Meet - .* - Google Chrome"] inhibit_idle visible
-for_window [class="Google-chrome" title="^(?!Meet)"] inhibit_idle none
+for_window [title="^Meet – ([a-z]|-)+$"] floating enable, resize set 400 400
 
 # Tiling controls.
 bindsym $mod+Left focus left
