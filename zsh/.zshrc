@@ -24,7 +24,12 @@ fi
 # Auto load ssh and gpg session using keychain
 export SSH_ASKPASS_REQUIRE=never
 export GPG_TTY=$(tty)
-eval "$(keychain --eval --nogui --quick --agents ssh,gpg id_ed25519 CBA9204EE159ECB70A73470EC2172BFA220A037A)"
+gpg-connect-agent updatestartuptty /bye >/dev/null
+if keychain --version 2>&1 | command grep -q 'keychain [3-9][0-9]*\.'; then
+  eval "$(keychain add --eval --nogui id_ed25519 gpgs:CBA9204EE159ECB70A73470EC2172BFA220A037A)"
+else
+  eval "$(keychain --eval --nogui --quick --agents ssh,gpg id_ed25519 CBA9204EE159ECB70A73470EC2172BFA220A037A)"
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
