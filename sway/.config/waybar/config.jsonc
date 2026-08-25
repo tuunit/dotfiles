@@ -13,7 +13,7 @@
     }
   },
   "sway/language": {
-    "format": "  {shortDescription}"
+    "format": "  {short}"
   },
   "tray": {
     "spacing": 4
