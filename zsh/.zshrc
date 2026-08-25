@@ -2,6 +2,8 @@ HISTSIZE=1000000000
 SAVEHIST=1000000000
 HIST_STAMPS="yyyy-mm-dd"
 
+export PATH=$HOME/.pub-cache/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
+
 # go version management
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
@@ -16,7 +18,8 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
 else
   export TERM="screen-256color"
 fi
-# Always start a tmux session
+
+# Always attach to the persistent Tmux session outside VS Code.
 if [[ "$TERM_PROGRAM" != "vscode" ]] && [[ -z "$TMUX" ]]; then
   exec tmux
 fi
@@ -48,9 +51,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
-
-# If you come from bash you might have to change your $PATH.
-export PATH=$HOME/.pub-cache/bin:$HOME/.local/bin:$HOME/bin:/usr/local/bin:$PATH
 
 install-go() {
   [[ -z "$1" ]] && echo "Usage: install-go <version>" && return 1
