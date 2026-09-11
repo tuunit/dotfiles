@@ -5,7 +5,7 @@ return {
     lazy = false,
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter").install({ "go", "lua", "bash", "json" })
+      require("nvim-treesitter").install({ "go", "lua", "bash", "json", "markdown", "markdown_inline" })
     end,
   },
 }
