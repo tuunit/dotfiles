@@ -34,3 +34,5 @@
 	navigate = true
 	light = false
 	line-numbers = true
+[include]
+  path = ~/.gitconfig.local
